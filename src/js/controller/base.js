@@ -64,6 +64,8 @@ function Base(options) {
      * @type {Array.<Calendar>}
      */
     this.calendars = [];
+
+    this.addresses = [];
 }
 
 /**
@@ -376,6 +378,14 @@ Base.prototype.setTheme = function(theme) {
  */
 Base.prototype.setCalendars = function(calendars) {
     this.calendars = calendars;
+};
+
+/**
+ * Set addresse list
+ * @param {Array.<Address>} addresses - addresses list
+ */
+Base.prototype.setAddresses = function(addresses) {
+    this.addresses = addresses;
 };
 
 // mixin

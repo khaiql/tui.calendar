@@ -89,7 +89,7 @@ module.exports = function(baseController, layoutContainer, dragHandler, options)
     var panels = [],
         vpanels = [];
     var weekView, dayNameContainer, dayNameView, vLayoutContainer, vLayout;
-    var createView, onSaveNewSchedule, onSetCalendars, lastVPanel;
+    var createView, onSaveNewSchedule, onSetCalendars, onSetAddresses, lastVPanel;
     var detailView, onShowDetailPopup, onDeleteSchedule, onShowEditPopup, onEditSchedule;
     var taskView = options.taskView;
     var scheduleView = options.scheduleView;
@@ -233,7 +233,7 @@ module.exports = function(baseController, layoutContainer, dragHandler, options)
 
     // binding create schedules event
     if (options.useCreationPopup) {
-        createView = new ScheduleCreationPopup(layoutContainer, baseController.calendars);
+        createView = new ScheduleCreationPopup(layoutContainer, baseController.calendars, baseController.addresses);
 
         onSaveNewSchedule = function(scheduleData) {
             util.extend(scheduleData, {
@@ -254,7 +254,14 @@ module.exports = function(baseController, layoutContainer, dragHandler, options)
         }
     };
 
+    onSetAddresses = function(addresses) {
+        if (createView) {
+            createView.onSetAddresses(addresses);
+        }
+    };
+
     baseController.on('setCalendars', onSetCalendars);
+    baseController.on('setAddresses', onSetAddresses);
 
     // binding popup for schedule detail
     if (options.useDetailPopup) {

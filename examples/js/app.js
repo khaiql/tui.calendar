@@ -16,6 +16,7 @@
         useCreationPopup: useCreationPopup,
         useDetailPopup: useDetailPopup,
         calendars: CalendarList,
+        addresses: AddressList,
         template: {
             milestone: function(model) {
                 return '<span class="calendar-font-icon ic-milestone-b"></span> <span style="background-color: ' + model.bgColor + '">' + model.title + '</span>';
@@ -204,7 +205,7 @@
         var isAllDay = document.getElementById('new-schedule-allday').checked;
         var start = datePicker.getStartDate();
         var end = datePicker.getEndDate();
-        var calendar = selectedCalendar ? selectedCalendar : CalendarList[0];
+        var calendar = CalendarList[0];
 
         if (!title) {
             return;
@@ -263,10 +264,11 @@
         }
     }
     function saveNewSchedule(scheduleData) {
-        var calendar = scheduleData.calendar || findCalendar(scheduleData.calendarId);
+        // var calendar = scheduleData.calendar || findCalendar(scheduleData.calendarId);
+        var address = findAddress(scheduleData.addressId);
         var schedule = {
             id: String(chance.guid()),
-            title: scheduleData.title,
+            title: address,
             isAllDay: scheduleData.isAllDay,
             start: scheduleData.start,
             end: scheduleData.end,
@@ -282,12 +284,12 @@
             },
             state: scheduleData.state
         };
-        if (calendar) {
-            schedule.calendarId = calendar.id;
-            schedule.color = calendar.color;
-            schedule.bgColor = calendar.bgColor;
-            schedule.borderColor = calendar.borderColor;
-        }
+        // if (calendar) {
+        //     schedule.calendarId = calendar.id;
+        //     schedule.color = calendar.color;
+        //     schedule.bgColor = calendar.bgColor;
+        //     schedule.borderColor = calendar.borderColor;
+        // }
 
         cal.createSchedules([schedule]);
 

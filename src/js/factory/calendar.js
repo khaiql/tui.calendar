@@ -524,6 +524,7 @@ function Calendar(container, options) {
      */
     this._controller = _createController(options);
     this._controller.setCalendars(options.calendars);
+    this._controller.setAddresses(options.addresses);
 
     /**
      * layout view (layout manager)
@@ -1700,6 +1701,15 @@ Calendar.prototype.getViewName = function() {
  */
 Calendar.prototype.setCalendars = function(calendars) {
     this._controller.setCalendars(calendars);
+    this.render();
+};
+
+/**
+ * Set addresses list
+ * @param {Array.<Object>} addresses - addresses list
+ */
+Calendar.prototype.setAddresses = function(addresses) {
+    this._controller.setAddresses(addresses);
     this.render();
 };
 

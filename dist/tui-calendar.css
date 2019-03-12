@@ -1,6 +1,6 @@
 /*!
  * TOAST UI Calendar
- * @version 1.11.0 | Fri Mar 08 2019
+ * @version 1.11.0 | Wed Mar 13 2019
  * @author NHNEnt FE Development Lab <dl_javascript@nhnent.com>
  * @license MIT
  */
@@ -666,9 +666,11 @@
 .tui-full-calendar-popup-section {
   font-size: 0;
   min-height: 40px;
+  margin-top: 16px;
 }
-.tui-full-calendar-section-calendar {
-  width: 176px;
+.tui-full-calendar-section-address button {
+  width: 100%;
+  text-align: left;
 }
 .tui-full-calendar-section-calendar.tui-full-calendar-hide {
   height: 21px;
@@ -692,11 +694,11 @@
 }
 .tui-full-calendar-section-start-date,
 .tui-full-calendar-section-end-date {
-  width: 176px;
+  width: 213px;
 }
 .tui-full-calendar-section-start-date input,
 .tui-full-calendar-section-end-date input {
-  width: 139px;
+  width: 150px;
 }
 .tui-full-calendar-section-start-date:hover .tui-full-calendar-popup-section-item,
 .tui-full-calendar-section-end-date:hover .tui-full-calendar-popup-section-item,
@@ -715,7 +717,7 @@
   font-size: 12px;
   color: #d5d5d5;
   height: 32px;
-  padding: 0 4px;
+  padding: 0 3px;
   vertical-align: middle;
 }
 .tui-full-calendar-popup-section-item.tui-full-calendar-section-allday {
@@ -744,7 +746,7 @@
   overflow: hidden;
 }
 .tui-full-calendar-popup-section-item {
-  height: 32px;
+  min-height: 32px;
   padding: 0 9px 0 12px;
   border: 1px solid #d5d5d5;
   display: inline-block;
@@ -829,6 +831,7 @@
   height: 30px;
   border: none;
   cursor: pointer;
+  width: 100%;
 }
 .tui-full-calendar-section-calendar .tui-full-calendar-dropdown-menu-item {
   width: 100%;

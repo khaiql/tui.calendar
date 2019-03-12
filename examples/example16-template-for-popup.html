@@ -40,6 +40,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/chance/1.0.13/chance.min.js"></script>
   <script src="../dist/tui-calendar.js"></script>
   <script src="./js/data/calendars.js"></script>
+  <script src="./js/data/addresses.js"></script>
   <script src="./js/data/schedules.js"></script>
   <script type="text/javascript" class="code-js">
   // register templates
@@ -105,10 +106,13 @@
   };
 
   var cal = new tui.Calendar('#calendar', {
-    defaultView: 'month',
+    defaultView: 'week',
+    taskView: false,
+    scheduleView: ['time'],
     template: templates,
     useCreationPopup: true,
-    useDetailPopup: true
+    useDetailPopup: true,
+    addresses: AddressList,
   });
   </script>
   <script src="./js/default.js"></script>

@@ -1,5 +1,6 @@
 function init() {
   cal.setCalendars(CalendarList);
+  cal.setAddresses(AddressList);
 
   setRenderRangeText();
   setSchedules();
@@ -183,7 +184,34 @@ cal.on({
     }
 
     return true;
-  }
+  },
+  'beforeCreateSchedule': function(e) {
+    console.log(e);
+    cal.createSchedules([{
+      id: String(chance.guid()),
+      calendarId: e.calendar.id,
+      addressId: e.address.id,
+      title: e.title,
+      color: calendar.color,
+      bgColor: calendar.bgColor,
+      dragBgColor: calendar.bgColor,
+      borderColor: calendar.borderColors,
+      category: 'time',
+      start: e.start,
+      end: e.end
+    }]);
+    refreshScheduleVisibility();
+  },
+  'beforeUpdateSchedule': function(e) {
+    console.log(e);
+    e.schedule.start = e.start;
+    e.schedule.end = e.end;
+    cal.updateSchedule(e.schedule.id, e.schedule.calendarId, e.schedule);
+  },
+  'beforeDeleteSchedule': function(e) {
+    console.log('beforeDeleteSchedule', e);
+    cal.deleteSchedule(e.schedule.id, e.schedule.calendarId);
+  },
 });
 
 init();
