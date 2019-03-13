@@ -19432,8 +19432,18 @@ ScheduleCreationPopup.prototype.render = function(viewModel) {
 };
 
 ScheduleCreationPopup.prototype._isInThePast = function(viewModel) {
-    var current = new Date().getTime();
-    if (current > viewModel.start.getTime()) {
+    var current, start;
+
+    // always show if edit mode
+    if (viewModel.isEditMode) {
+        return false;
+    }
+
+    current = new Date().getTime();
+    start = viewModel.schedule ? viewModel.schedule.start : viewModel.start;
+    start = new TZDate(start).getTime();
+
+    if (start < current) {
         return true;
     }
 
