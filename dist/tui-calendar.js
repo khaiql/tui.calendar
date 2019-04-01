@@ -1,6 +1,6 @@
 /*!
  * TOAST UI Calendar
- * @version 1.11.0 | Wed Mar 13 2019
+ * @version 1.11.0 | Mon Apr 01 2019
  * @author NHNEnt FE Development Lab <dl_javascript@nhnent.com>
  * @license MIT
  */
@@ -1489,14 +1489,9 @@ module.exports = g;
 
 var util = __webpack_require__(/*! tui-code-snippet */ "tui-code-snippet");
 var Calendar = __webpack_require__(/*! ./js/factory/calendar */ "./src/js/factory/calendar.js");
-var GA_TRACKING_ID = 'UA-129951699-1';
 
 __webpack_require__(/*! ./css/main.styl */ "./src/css/main.styl");
 __webpack_require__(/*! ./js/view/template/helper */ "./src/js/view/template/helper.js");
-
-if (util.sendHostname) {
-    util.sendHostname('calendar', GA_TRACKING_ID);
-}
 
 // for jquery
 if (global.jQuery) {
@@ -19398,7 +19393,8 @@ ScheduleCreationPopup.prototype.render = function(viewModel) {
         viewModel.selectedCal = this._selectedCal = calendars[0];
     }
 
-    if (!addresses.find(function(addr) {
+    // only add prompt option if has more than 1 addresses
+    if (addresses.length > 1 && !addresses.find(function(addr) {
         return addr.id === '0';
     })) {
         addresses.unshift({

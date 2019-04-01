@@ -280,7 +280,8 @@ ScheduleCreationPopup.prototype.render = function(viewModel) {
         viewModel.selectedCal = this._selectedCal = calendars[0];
     }
 
-    if (!addresses.find(function(addr) {
+    // only add prompt option if has more than 1 addresses
+    if (addresses.length > 1 && !addresses.find(function(addr) {
         return addr.id === '0';
     })) {
         addresses.unshift({
